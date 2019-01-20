@@ -1,0 +1,9 @@
+- name: install nginx
+  apt:
+    update_cache: yes
+    name: nginx
+    state: present
+  become: yes
+  notify:
+    - restart nginx ubuntu
+  when: ansible_os_family == "Debian"
