@@ -28,13 +28,13 @@ resource "aws_instance" "first" {
   }
 
   provisioner "local-exec" {
-    command = "ansible-playbook -i '${aws_instance.first.public_ip},' -u ubuntu  --private-key '~/.ssh/id_rsa' playbook.yml" 
-  }    
+    command = "ansible-playbook -i '${aws_instance.first.public_ip},' -u ubuntu  --private-key '~/.ssh/id_rsa' playbook.yml"
+  }
 }
 
 resource "aws_key_pair" "deployer" {
   key_name   = "deployer-key"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDdJwWY5sBMj8wFnspT3xeTlCp+tcC3YTHAZzyiIU/Uyg+Wza9nSgEq27boNkdezTwwGy5wRAk/+8gVEvSZCucHMjtzHDnBT8nM4EwVq/hBszitUGu6w4ThkHehIuh8s65GuGfmG0Mb0Ycj9NyqOjBNGmPMUwePDpmri3K7LBGyy9iUDDiNr/Dw1z3w/vsVxlwVDcY7YQhYLdlrjfeT8PI+L+ulJcwwBEJ7k8wL/KirNNEIMG1CwTx5QUZZhKWJ4DgT0oPEzbnI1BlwIjntEg+mZdZCm1+3Ii8+9ffZh6LGPGLrVU9APg98Hl0ohkOTvL3N3ZAOVa+QyMNpIQy7vCx ansible-generated on localhost.localdomain"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCfPiHRf2sNxPlbwT2C/RwaT7x9W/44qfyJdBG0kilHi+opHd1iq7vgxobg4dQGB0d85QJZvlG4/b4ilKEreiuTiedx7+7NYIUpMH5XDYziDX9t/rLQEuhIU9ggQ7/JtW3Kt4u3JvrJDzt0cyf/J4WVPvdEt/I1NLS21BAhYiKNbwNwfR0kZ5Xo1vGuj50fwCYUU35VQF5wyUV61Y3LkFRct6h2UpGoAVOH6pU8ge9+vOYitKNEBXWr+niynCnu7PqRYQa2hKAFSkXoNWsIpYeWTbBzqWnKhkyC+ybyKUUnZTPZ4hlplarT0GWlQjF/R8Mr4z5NXUV1H2y4h75rpn2LneUZprRIXHm5NxlIQFBzjUnxk9CZ0jIhS9HOJawI1u1xjHtO12nWuaHcza64Qxm7mjpovnJhnSUKaMbXm7R2lFpqWUPAlHydKdlSaDahrp83aC2D90tRMQJz3qQqMfJuB6NOeAqKGKLlPQ7CxFuSRXhlSMdnS90yRl0Qp7IrLNtBFggzSOQ3rQ3AzKRbl4DWwHPMpoUBIUoJaL89XXNyGnxRkW9BoZhkkQ9HEX0l+LDJ0Fh+C4FL4+hxKkHFj9SKhO6f6FB5xd+m5KetiEPHxuxFPK8+xGAUwfOZDASR+HljyVC3UrQUHr4zLKeKjYT2Tk4Wtfy30iKEYes8yEjk5w== danish@danish-PORTEGE-Z30-A"
 }
 
 resource "aws_security_group" "allow_ssh" {
@@ -46,14 +46,14 @@ resource "aws_security_group" "allow_ssh" {
     from_port   = 22
     to_port     = 22
     protocol    = "TCP"
-    cidr_blocks = ["143.65.196.4/32"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "TCP"
-    cidr_blocks = ["143.65.196.4/32"]
+    cidr_blocks = ["0.0.0.0./0"]
   }
 
   egress {
