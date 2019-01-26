@@ -1,0 +1,19 @@
+- name: install docker ce package
+
+- name: installing dependencies first
+  apt:
+   name: "{{ item }}"
+   state: latest
+   update_cache: yes
+  with_items:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
+
+- name: add docker's official GPG key
+  apt_key:
+   id: 0EBFCD88
+   url: https://download.docker.com/linux/ubuntu/gpg
+   state: present
