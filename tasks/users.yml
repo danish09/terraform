@@ -1,9 +1,9 @@
     - name: create my user
       user:
-        name: siddiq08
+        name: alpha
         shell: /bin/bash
         password: $6$/u3Axrxfc$aOpKw621QV7AkduPDuFbHIbTALq9J2kPrderwT1vs2yEzpS1C3ZRCZ7H8VHhKc4JmgPRvjUn7QAk0DKGVo8N90
-        home: /home/siddiq08/
+        home: ~
         create_home: yes
         groups: sudo
 
@@ -11,15 +11,15 @@
     - name: create necessary directories
       file:
         state: directory
-        path: /home/siddiq08/.ssh/
-        owner: siddiq08
-        group: siddiq08
+        path: ~/.ssh/
+        owner: alpha
+        group: alpha
         mode: 0755
 
     - name: add ssh key to siddiq08 user
       copy:
-        src: /home/siddiq08/.ssh/id_rsa.pub
-        dest: /home/siddiq08/.ssh/authorized_keys
-        owner: siddiq08
-        group: siddiq08
+        src: ~/.ssh/id_rsa.pub
+        dest: ~/.ssh/authorized_keys
+        owner: alpha
+        group: alpha
         mode: 0644
